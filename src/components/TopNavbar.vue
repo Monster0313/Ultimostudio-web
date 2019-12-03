@@ -14,7 +14,7 @@
           <a href="#rule">玩法介紹</a>
         </li>
         <li>
-          <a href="#item">美術設計</a>
+          <a href="#design">美術設計</a>
         </li>
         <li>
           <a href="#team">團隊成員</a>
@@ -36,16 +36,52 @@ export default {
 <style lang="scss">
   #topNavbar {
     width: 100vw;
-    height: 60px;
-    background-color: grey;
+    height: 56px;
     position: fixed;
+    z-index: 10;
     top: 0;
+    background-color: #c2b6b6;
+    background-image: linear-gradient(315deg, #c2b6b6 0%, #576574 74%);
+    box-shadow: 0 1px 5px rgba(32, 32, 32, 0.7);
     .logo {
-
+      height: 100%;
+      width: 12%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      a {
+        text-decoration: none;
+        h1 {
+          margin: 0 auto;
+          text-align: center;
+          color: #ddd;
+          text-shadow: 2px 2px 5px #000000;
+        }
+      }
     }
     .menu {
+      height: 100%;
+      width: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: 0;
+      right: 0;
       ul {
         list-style-type: none;
+        overflow: hidden;
+        li {
+          float: left;
+          width: 100px;
+          padding: 10px;
+          a {
+            font-size: 20px;
+            text-decoration: none;
+            color: #ffffff;
+            text-shadow: 2px 2px 5px #000000;
+          }
+        }
       }
     }
   }

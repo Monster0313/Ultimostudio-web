@@ -1,11 +1,27 @@
 <template>
   <div id="main">
     <div class="main-wrap">
-      <TopNavbar></TopNavbar>
       <RightSide></RightSide>
       <LeftSide></LeftSide>
 
+      <div id="intro">
+        <div class="intro-wrap">
+          <div class="intro-text">
+            <h1>正義和自由互為表裡，一旦分割，兩者都會失去。—富爾克</h1>
+            <br>
+            <p>這款桌遊是以真實事件發生過的事件改編，</p>
+            <p>玩家會化身為人民或政府，</p>
+            <p>兩者皆有屬於自己的目標，也藏有著改變歷史的關鍵，</p>
+            <p>希望讓更多人可以藉此認識我們共同生活的這個家鄉，</p>
+            <p>曾流過的血與看見那盼望著的—那顆心。</p>
+          </div>
+        </div>
+      </div>
+
       <div id="story">
+        <div class="title">
+          <h1>遊戲故事</h1>
+        </div>
         <div class="story-wrap">
           <div class="story-text" v-for="storyKey in story" :key="storyKey">
             <h2>{{ storyKey.title }}</h2>
@@ -13,23 +29,266 @@
           </div>
         </div>
       </div>
+
+      <div id="design">
+        <div class="design-flex-wrap" v-show="imageDetailShow == false">
+          <div class="title">
+            <h1>美術設計</h1>
+          </div>
+          <div class="design-wrap">
+            <div class="design-content">
+              <div class="design-image-wrap">
+                <div class="design-image-content" v-for="imageKey in image" :key="imageKey">
+                  <img :class="'design-image'" :src="imageKey.link" @click="getImageData(imageKey.id), imageDetailShow = true"/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="design-clicked-wrap" v-show="imageDetailShow == true" @click="imageDetailShow = false">
+          <div class="title">
+            <h1>美術設計</h1>
+          </div>
+          <div class="design-clicked-content">
+            <div class="design-clicked-content-image">
+              <img :src="image[imageDetailCount].link"/>
+            </div>
+            <div class="design-clicked-content-name">
+              <h2>{{ image[imageDetailCount].name }}</h2>
+            </div>
+            <div class="design-clicked-content-text">
+              <p>{{ image[imageDetailCount].content }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="team">
+        <div class="title">
+          <h1>團隊成員</h1>
+        </div>
+        <div class="team-wrap">
+          <div class="team-content">
+            <img src="" />
+            <h2 class="name">姓名</h2>
+            <h3 class="duty">職責</h3>
+            <p class="aboutMe">簡單介紹</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="contact">
+        <div class="title">
+          <h1>聯絡我們</h1>
+        </div>
+        <div class="contact-wrap">
+          <div class="contact-content">
+
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </template>
 
+<style lang="scss">
+  #main {
+    overflow-x: hidden;
+    .main-wrap {
+      // width: 100%;
+      // height: 100%;
+
+      #intro {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .intro-wrap {
+          .intro-text {
+            font-size: 25px;
+            color: #ddd;
+            text-shadow: 2px 2px #000000;
+            h1 {
+              font-size: 30px;
+            }
+          }
+        }
+      }
+      #story {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        .title {
+          width: calc((100vw/10)*6);
+          height: 100px;
+          top: 100px;
+          color: #ddd;
+          text-shadow: 2px 2px #000000;
+          h1 {
+            padding-bottom: 20px;
+            border-bottom: #444 2px solid;
+          }
+        }
+        .story-wrap {
+          width: calc((100vw/10)*4);
+          height: 80vh;
+          padding: 20px;
+          overflow-y: scroll;
+          scrollbar-width: thin;
+          scrollbar-color: dark;
+          .story-text {
+            line-height: 1.5;
+            font-size: 20px;
+            letter-spacing: 2.5px;
+            color: #ddd;
+            text-shadow: 1px 1px 3px #000000;
+          }
+        }
+        .story-wrap::-webkit-scrollbar {
+          width: 5px;
+          height: 8px;
+          background-color: #aaa;
+        }
+        .story-wrap::-webkit-scrollbar-thumb {
+          background: #555;
+        }
+      }
+
+      #design {
+        width: 100vw;
+        height: 100vh;
+        position: relative;
+        .title {
+          width: calc((100vw/10)*6);
+          height: 100px;
+          top: 100px;
+          color: #ddd;
+          text-shadow: 2px 2px #000000;
+          h1 {
+            padding-bottom: 20px;
+            border-bottom: #444 2px solid;
+          }
+        }
+        .design-flex-wrap {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          .title {
+            width: calc((100vw/10)*6);
+            height: 100px;
+            top: 100px;
+            color: #ddd;
+            text-shadow: 2px 2px #000000;
+            h1 {
+              padding-bottom: 20px;
+              border-bottom: #444 2px solid;
+            }
+          }
+          .design-wrap {
+            .design-content {
+              .design-image-wrap {
+                width: calc((100vw/10)*6);
+                height: 80vh;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-around;
+                align-items: flex-start;
+                flex-wrap: wrap;
+                .design-image-content {
+                  img {
+                    height: 200px;
+                    filter: grayscale(100) blur(3px);
+                    border: #aaa 2px solid;
+                  }
+                  img:hover {
+                    filter: grayscale(0) blur(0px);
+                    border: #444 2px solid;
+                  }
+                }
+              }
+            }
+          }
+        }
+        .design-clicked-wrap {
+          z-index: 5;
+          width: 100%;
+          height: 100%;
+          background: none;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          .title {
+            width: calc((100vw/10)*6);
+            height: 100px;
+            top: 100px;
+            color: #ddd;
+            text-shadow: 2px 2px #000000;
+            h1 {
+              padding-bottom: 20px;
+              border-bottom: #444 2px solid;
+            }
+          }
+          .design-clicked-content {
+            width: calc((100vw/10)*6);
+            height: 80vh;
+            border-radius: 30px;
+            background: rgba($color: #dddddd, $alpha: 0.1);
+            .design-clicked-content-image {
+              img {
+                width: 40%;
+              }
+            }
+            .design-clicked-content-name {
+              h2 {
+                font-size: 40px;
+                color: #ddd;
+                text-shadow: 2px 2px 5px #000000;
+              }
+            }
+            .design-clicked-content-text {
+              p {
+                font-size: 30px;
+                color: #ddd;
+                text-shadow: 2px 2px 5px #000000;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+</style>
+
 <script>
-import TopNavbar from '@/components/TopNavbar'
 import LeftSide from '@/components/LeftSide'
 import RightSide from '@/components/RightSide'
 
 export default {
   components: {
-    TopNavbar,
     LeftSide,
     RightSide
   },
   data () {
     return {
+      imageDetailShow: false,
+      imageDetailCount: 0,
+      team: {
+        member_1: {
+          name: '邱旻鋒',
+          duty: '前端設計、工程',
+          talking: ''
+        }
+      },
       story: {
         partOne: {
           title: '第一章 前言',
@@ -96,7 +355,110 @@ export default {
             228事件爆發後，冤案不斷發生，因此對政府不滿的人比比皆是，我不斷拉攏那些人，讓自己的組織越來越龐大，組織名稱是「末班」，忠誠於組織的人們，有一個絕對不能交出去的東西，那就是名單，上面記載了所有參加末班的人員名字，一旦曝光，所有的人都將死在國家手上，無一倖免。
           `
         }
-      }
+      },
+      image: [
+        {
+          id: 1,
+          name: '口琴',
+          link: 'https://i.imgur.com/95pzLF5.png',
+          content: '爸爸和媽媽的定情物'
+        },
+        {
+          id: 2,
+          name: '鋼筆',
+          link: 'https://i.imgur.com/ufEyK0j.png',
+          content: '工作時使用的鋼筆'
+        },
+        {
+          id: 3,
+          name: '台幣',
+          link: 'https://i.imgur.com/WlWV48y.png',
+          content: '台灣銀行所發行的貨幣'
+        },
+        {
+          id: 4,
+          name: '手帕',
+          link: 'https://i.imgur.com/hv7wGRd.png',
+          content: '這是媽媽親手編織的手帕'
+        },
+        {
+          id: 5,
+          name: '地瓜粥',
+          link: 'https://i.imgur.com/2K3EpWx.png',
+          content: '最近物價上漲，便宜能果腹的地瓜，是最好的選擇'
+        },
+        {
+          id: 6,
+          name: '醫療箱',
+          link: 'https://i.imgur.com/PzbtyW0.png',
+          content: '裝滿醫療器材的箱子'
+        },
+        {
+          id: 7,
+          name: '菸',
+          link: 'https://i.imgur.com/WJWF1EN.png',
+          content: '讓人短暫逃離世俗的煩惱'
+        },
+        {
+          id: 8,
+          name: '照片',
+          link: 'https://i.imgur.com/v2WrY5A.png',
+          content: '我們的全家福照片'
+        },
+        {
+          id: 9,
+          name: '課本',
+          link: 'https://i.imgur.com/tbVCFbM.png',
+          content: '學習知識能夠使我快樂'
+        },
+        {
+          id: 10,
+          name: '糖果',
+          link: 'https://i.imgur.com/qxMkIEZ.png',
+          content: '平時最喜歡吃的零食'
+        },
+        {
+          id: 11,
+          name: '口糧',
+          link: 'https://i.imgur.com/MG2ZVaa.png',
+          content: '暫時止飢的緊急糧食'
+        },
+        {
+          id: 12,
+          name: '槍',
+          link: 'https://i.imgur.com/0vBv3LQ.png',
+          content: '叛徒必須接受制裁'
+        },
+        {
+          id: 13,
+          name: '軍用醫療箱',
+          link: 'https://i.imgur.com/INZbIif.png',
+          content: '裝滿醫療器材的箱子'
+        },
+        {
+          id: 14,
+          name: '睡袋',
+          link: 'https://i.imgur.com/VXIepWD.png',
+          content: '睡袋的保暖效果，能幫助我們度過寒冬'
+        },
+        {
+          id: 15,
+          name: '彈夾',
+          link: 'https://i.imgur.com/J7LP5Kg.png',
+          content: '隨時填充子彈上膛'
+        }
+        // {
+        //   name: '水壺',
+        //   link: 'https://i.imgur.com/KsJDmfI.png',
+        //   content: '水是不可或缺的資源'
+        // }
+      ]
+    }
+  },
+  methods: {
+    getImageData (value) {
+      this.imageDetailCount = 0
+      this.imageDetailCount = value - 1
     }
   }
 }
