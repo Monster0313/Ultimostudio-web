@@ -50,6 +50,13 @@
             <h1>美術設計</h1>
           </div>
           <div class="design-clicked-content">
+            <div class="design-clicked-content-icon">
+              <img src="../assets/image/design-i-1.png" v-if="image[imageDetailCount].icon_1 == true" />
+              <img src="../assets/image/design-i-2.png" v-if="image[imageDetailCount].icon_2 == true" />
+              <img src="../assets/image/design-i-3.png" v-if="image[imageDetailCount].icon_3 == true" />
+              <img src="../assets/image/design-i-4.png" v-if="image[imageDetailCount].icon_4 == true" />
+              <img src="../assets/image/design-i-5.png" v-if="image[imageDetailCount].icon_5 == true" />
+            </div>
             <div class="design-clicked-content-image">
               <img :src="image[imageDetailCount].link"/>
             </div>
@@ -64,30 +71,47 @@
       </div>
 
       <div id="team">
-        <div class="title">
-          <h1>團隊成員</h1>
-        </div>
         <div class="team-wrap">
-          <div class="team-content">
-            <img src="" />
-            <h2 class="name">姓名</h2>
-            <h3 class="duty">職責</h3>
-            <p class="aboutMe">簡單介紹</p>
+          <div class="title">
+            <h1>團隊成員</h1>
+          </div>
+          <div class="team-content-wrap">
+            <div class="team-content" v-for="teamKey in team" :key="teamKey">
+              <img :src="teamKey.image" />
+              <h2>{{ '姓名：' + teamKey.name }}</h2>
+              <h3>{{ '職務：' + teamKey.duty }}</h3>
+            </div>
+            <!-- <p class="aboutMe">簡單介紹</p> -->
           </div>
         </div>
       </div>
 
       <div id="contact">
+        <div class="contact-wrap">
         <div class="title">
           <h1>聯絡我們</h1>
         </div>
-        <div class="contact-wrap">
           <div class="contact-content">
-
+            <div class="contact-content-socialMedia">
+              <a :href="contact.facebook" target="_blank"><font-awesome-icon :icon="['fab', 'facebook-square']"/></a>
+              <a :href="contact.instagram" target="_blank"><font-awesome-icon :icon="['fab', 'instagram']"/></a>
+            </div>
+            <div class="contact-content-others">
+              <h2 class="email">電子郵件 / E-mail： Ultimostudio.Taiwan@gmail.com</h2>
+            </div>
           </div>
         </div>
       </div>
 
+      <div id="toTop">
+        <a href="#intro">
+          <img src="../assets/image/to-top.png">
+        </a>
+      </div>
+
+      <div class="copyright">
+        <p>Copyright © 2019 UltimoStudio 末班工作室. All rights reserved</p>
+      </div>
     </div>
   </div>
 </template>
@@ -129,7 +153,7 @@
           height: 100px;
           top: 100px;
           color: #ddd;
-          text-shadow: 2px 2px #000000;
+          text-shadow: 2px 2px 5px #000000;
           h1 {
             padding-bottom: 20px;
             border-bottom: #444 2px solid;
@@ -169,7 +193,7 @@
           height: 100px;
           top: 100px;
           color: #ddd;
-          text-shadow: 2px 2px #000000;
+          text-shadow: 2px 2px 5px #000000;
           h1 {
             padding-bottom: 20px;
             border-bottom: #444 2px solid;
@@ -182,17 +206,6 @@
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          .title {
-            width: calc((100vw/10)*6);
-            height: 100px;
-            top: 100px;
-            color: #ddd;
-            text-shadow: 2px 2px #000000;
-            h1 {
-              padding-bottom: 20px;
-              border-bottom: #444 2px solid;
-            }
-          }
           .design-wrap {
             .design-content {
               .design-image-wrap {
@@ -232,7 +245,7 @@
             height: 100px;
             top: 100px;
             color: #ddd;
-            text-shadow: 2px 2px #000000;
+            text-shadow: 2px 2px 5px #000000;
             h1 {
               padding-bottom: 20px;
               border-bottom: #444 2px solid;
@@ -243,6 +256,13 @@
             height: 80vh;
             border-radius: 30px;
             background: rgba($color: #dddddd, $alpha: 0.1);
+            .design-clicked-content-icon {
+              display: inline;
+              img {
+                margin: 20px;
+                width: 50px;
+              }
+            }
             .design-clicked-content-image {
               img {
                 width: 40%;
@@ -265,6 +285,122 @@
           }
         }
       }
+
+      #team {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .team-wrap {
+          width: 100%;
+          height: 100%;
+          background: none;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          .title {
+            width: calc((100vw/10)*6);
+            height: 100px;
+            top: 100px;
+            color: #ddd;
+            text-shadow: 2px 2px 5px #000000;
+            h1 {
+              padding-bottom: 20px;
+              border-bottom: #444 2px solid;
+            }
+          }
+          .team-content-wrap {
+            width: calc((100vw/10)*6);
+            height: 80vh;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+            align-content: space-around;
+            .team-content {
+              width: 30%;
+              height: 20vh;
+              img {
+                width: 10vw;
+                border-radius: 50%;
+                box-shadow: 2px 2px 5px #444;
+              }
+              h2 {
+                color: #ddd;
+                text-shadow: 2px 2px 5px #000000;
+              }
+              h3 {
+                color: #ddd;
+                text-shadow: 2px 2px 5px #000000;
+              }
+            }
+          }
+        }
+      }
+
+      #contact {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .contact-wrap {
+          width: 100%;
+          height: 100%;
+          background: none;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          .title {
+            width: calc((100vw/10)*6);
+            height: 100px;
+            top: 100px;
+            color: #ddd;
+            text-shadow: 2px 2px 5px #000000;
+            h1 {
+              padding-bottom: 20px;
+              border-bottom: #444 2px solid;
+            }
+          }
+          .contact-content {
+            width: calc((100vw/10)*6);
+            height: 80vh;
+            .contact-content-socialMedia {
+              height: 40%;
+              font-size: 150px;
+              margin-top: 100px;
+              border-bottom: #aaa 2px solid;
+              a {
+                text-decoration: none;
+                color: #444;
+                padding: 50px;
+              }
+            }
+            .contact-content-others {
+              .email {
+                color: #ddd;
+                text-shadow: 2px 2px 5px #000000;
+              }
+            }
+          }
+        }
+      }
+
+      #toTop {
+        position: fixed;
+        right: 280px;
+        bottom: 50px;
+        a {
+          img {
+            width: 40px;
+          }
+        }
+      }
     }
   }
 </style>
@@ -282,13 +418,33 @@ export default {
     return {
       imageDetailShow: false,
       imageDetailCount: 0,
-      team: {
-        member_1: {
+      team: [
+        {
           name: '邱旻鋒',
           duty: '前端設計、工程',
-          talking: ''
+          image: 'https://i.imgur.com/oaWZdfz.jpg'
+        },
+        {
+          name: '唐苡晴',
+          duty: '專案經理、行銷',
+          image: 'https://i.imgur.com/MarKtUu.jpg'
+        },
+        {
+          name: '莊浣茜',
+          duty: '文書內容、故事',
+          image: 'https://i.imgur.com/WRq9yqv.jpg'
+        },
+        {
+          name: '洪霆揚',
+          duty: '場務設計、行政',
+          image: 'https://i.imgur.com/jvkeSda.jpg'
+        },
+        {
+          name: '陳亞松',
+          duty: '美術設計、繪圖',
+          image: 'https://i.imgur.com/GqtGuKo.jpg'
         }
-      },
+      ],
       story: {
         partOne: {
           title: '第一章 前言',
@@ -361,98 +517,182 @@ export default {
           id: 1,
           name: '口琴',
           link: 'https://i.imgur.com/95pzLF5.png',
-          content: '爸爸和媽媽的定情物'
+          content: '爸爸和媽媽的定情物',
+          icon_1: false,
+          icon_2: true,
+          icon_3: true,
+          icon_4: false,
+          icon_5: false
         },
         {
           id: 2,
           name: '鋼筆',
           link: 'https://i.imgur.com/ufEyK0j.png',
-          content: '工作時使用的鋼筆'
+          content: '工作時使用的鋼筆',
+          icon_1: false,
+          icon_2: true,
+          icon_3: false,
+          icon_4: false,
+          icon_5: false
         },
         {
           id: 3,
           name: '台幣',
           link: 'https://i.imgur.com/WlWV48y.png',
-          content: '台灣銀行所發行的貨幣'
+          content: '台灣銀行所發行的貨幣',
+          icon_1: true,
+          icon_2: true,
+          icon_3: true,
+          icon_4: true,
+          icon_5: false
         },
         {
           id: 4,
           name: '手帕',
           link: 'https://i.imgur.com/hv7wGRd.png',
-          content: '這是媽媽親手編織的手帕'
+          content: '這是媽媽親手編織的手帕',
+          icon_1: false,
+          icon_2: false,
+          icon_3: true,
+          icon_4: false,
+          icon_5: false
         },
         {
           id: 5,
           name: '地瓜粥',
           link: 'https://i.imgur.com/2K3EpWx.png',
-          content: '最近物價上漲，便宜能果腹的地瓜，是最好的選擇'
+          content: '最近物價上漲，便宜能果腹的地瓜，是最好的選擇',
+          icon_1: true,
+          icon_2: true,
+          icon_3: true,
+          icon_4: true,
+          icon_5: false
         },
         {
           id: 6,
           name: '醫療箱',
           link: 'https://i.imgur.com/PzbtyW0.png',
-          content: '裝滿醫療器材的箱子'
+          content: '裝滿醫療器材的箱子',
+          icon_1: true,
+          icon_2: false,
+          icon_3: false,
+          icon_4: false,
+          icon_5: false
         },
         {
           id: 7,
           name: '菸',
           link: 'https://i.imgur.com/WJWF1EN.png',
-          content: '讓人短暫逃離世俗的煩惱'
+          content: '讓人短暫逃離世俗的煩惱',
+          icon_1: true,
+          icon_2: true,
+          icon_3: false,
+          icon_4: false,
+          icon_5: false
         },
         {
           id: 8,
           name: '照片',
           link: 'https://i.imgur.com/v2WrY5A.png',
-          content: '我們的全家福照片'
+          content: '我們的全家福照片',
+          icon_1: false,
+          icon_2: false,
+          icon_3: true,
+          icon_4: true,
+          icon_5: false
         },
         {
           id: 9,
           name: '課本',
           link: 'https://i.imgur.com/tbVCFbM.png',
-          content: '學習知識能夠使我快樂'
+          content: '學習知識能夠使我快樂',
+          icon_1: false,
+          icon_2: false,
+          icon_3: false,
+          icon_4: true,
+          icon_5: false
         },
         {
           id: 10,
           name: '糖果',
           link: 'https://i.imgur.com/qxMkIEZ.png',
-          content: '平時最喜歡吃的零食'
+          content: '平時最喜歡吃的零食',
+          icon_1: true,
+          icon_2: false,
+          icon_3: false,
+          icon_4: true,
+          icon_5: false
         },
         {
           id: 11,
           name: '口糧',
           link: 'https://i.imgur.com/MG2ZVaa.png',
-          content: '暫時止飢的緊急糧食'
+          content: '暫時止飢的緊急糧食',
+          icon_1: false,
+          icon_2: false,
+          icon_3: false,
+          icon_4: false,
+          icon_5: true
         },
         {
           id: 12,
           name: '槍',
           link: 'https://i.imgur.com/0vBv3LQ.png',
-          content: '叛徒必須接受制裁'
+          content: '叛徒必須接受制裁',
+          icon_1: false,
+          icon_2: false,
+          icon_3: false,
+          icon_4: false,
+          icon_5: true
         },
         {
           id: 13,
           name: '軍用醫療箱',
           link: 'https://i.imgur.com/INZbIif.png',
-          content: '裝滿醫療器材的箱子'
+          content: '裝滿醫療器材的箱子',
+          icon_1: false,
+          icon_2: false,
+          icon_3: false,
+          icon_4: false,
+          icon_5: true
         },
         {
           id: 14,
           name: '睡袋',
           link: 'https://i.imgur.com/VXIepWD.png',
-          content: '睡袋的保暖效果，能幫助我們度過寒冬'
+          content: '睡袋的保暖效果，能幫助我們度過寒冬',
+          icon_1: false,
+          icon_2: false,
+          icon_3: false,
+          icon_4: false,
+          icon_5: true
         },
         {
           id: 15,
           name: '彈夾',
           link: 'https://i.imgur.com/J7LP5Kg.png',
-          content: '隨時填充子彈上膛'
+          content: '隨時填充子彈上膛',
+          icon_1: false,
+          icon_2: false,
+          icon_3: false,
+          icon_4: false,
+          icon_5: true
         }
         // {
         //   name: '水壺',
         //   link: 'https://i.imgur.com/KsJDmfI.png',
-        //   content: '水是不可或缺的資源'
+        //   content: '水是不可或缺的資源',
+        //   icon_1: false,
+        //   icon_2: false,
+        //   icon_3: false,
+        //   icon_4: false,
+        //   icon_5: true
         // }
-      ]
+      ],
+      contact: {
+        facebook: 'https://www.facebook.com/UltimoGames',
+        instagram: 'https://www.instagram.com/ultimostudio.tw/'
+      }
     }
   },
   methods: {

@@ -11,9 +11,6 @@
           <a href="#story">遊戲故事</a>
         </li>
         <li>
-          <a href="#rule">玩法介紹</a>
-        </li>
-        <li>
           <a href="#design">美術設計</a>
         </li>
         <li>
