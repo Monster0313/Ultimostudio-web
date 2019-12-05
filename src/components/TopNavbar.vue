@@ -42,7 +42,7 @@ export default {
     box-shadow: 0 1px 5px rgba(32, 32, 32, 0.7);
     .logo {
       height: 100%;
-      width: 12%;
+      width: 15%;
       display: flex;
       justify-content: center;
       align-items: center;

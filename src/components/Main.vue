@@ -147,11 +147,10 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding: 20px;
         .title {
           width: calc((100vw/10)*6);
           height: 100px;
-          top: 100px;
+          padding-top: 50px;
           color: #ddd;
           text-shadow: 2px 2px 5px #000000;
           h1 {
@@ -191,7 +190,7 @@
         .title {
           width: calc((100vw/10)*6);
           height: 100px;
-          top: 100px;
+          padding-top: 50px;
           color: #ddd;
           text-shadow: 2px 2px 5px #000000;
           h1 {
@@ -218,7 +217,7 @@
                 flex-wrap: wrap;
                 .design-image-content {
                   img {
-                    height: 200px;
+                    height: 10em;
                     filter: grayscale(100) blur(3px);
                     border: #aaa 2px solid;
                   }
@@ -304,7 +303,7 @@
           .title {
             width: calc((100vw/10)*6);
             height: 100px;
-            top: 100px;
+            padding-top: 50px;
             color: #ddd;
             text-shadow: 2px 2px 5px #000000;
             h1 {
@@ -323,7 +322,7 @@
             align-content: space-around;
             .team-content {
               width: 30%;
-              height: 20vh;
+              // height: 20vh;
               img {
                 width: 10vw;
                 border-radius: 50%;
@@ -359,7 +358,7 @@
           .title {
             width: calc((100vw/10)*6);
             height: 100px;
-            top: 100px;
+            padding-top: 50px;
             color: #ddd;
             text-shadow: 2px 2px 5px #000000;
             h1 {
