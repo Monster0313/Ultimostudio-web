@@ -21,7 +21,6 @@ export default {
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+TC:400&display=swap&subset=chinese-traditional');
 html {
   top: 0;
-  overflow: hidden;
 }
 #app {
   font-family: 'Noto Sans TC', sans-serif;
